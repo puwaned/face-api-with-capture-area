@@ -15,7 +15,12 @@ const withFaciApiProvider = (Component: ComponentType) => {
   return () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const previewRef = useRef<HTMLCanvasElement>(null);
+    const textRef = useRef<HTMLHeadingElement>(null);
+    
+    const [stream, setStream] = useState<MediaStream>()
     const [isModelLoaded, setIsModelLoaded] = useState<boolean>(false);
+    const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
     useEffect(() => {
       const loadModels = async () => {
@@ -31,7 +36,19 @@ const withFaciApiProvider = (Component: ComponentType) => {
     }, []);
 
     return (
-      <Context.Provider value={{ isModelLoaded, videoRef, canvasRef }}>
+      <Context.Provider
+        value={{
+          isModelLoaded,
+          isPlaying,
+          setIsPlaying,
+          videoRef,
+          textRef,
+          canvasRef,
+          previewRef,
+          stream,
+          setStream
+        }}
+      >
         <Component />
       </Context.Provider>
     );
