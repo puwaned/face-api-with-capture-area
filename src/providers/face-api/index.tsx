@@ -31,7 +31,7 @@ const withFaciApiProvider = (Component: ComponentType) => {
     }, []);
 
     return (
-      <Context.Provider value={{ isModelLoaded }}>
+      <Context.Provider value={{ isModelLoaded, videoRef, canvasRef }}>
         <Component />
       </Context.Provider>
     );

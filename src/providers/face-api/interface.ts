@@ -1,5 +1,7 @@
-
+import { RefObject } from "react";
 
 export interface IFaciApiContext {
-    isModelLoaded: boolean;
+  isModelLoaded: boolean;
+  videoRef: RefObject<HTMLVideoElement>;
+  canvasRef: RefObject<HTMLCanvasElement>;
 }

@@ -1,7 +1,7 @@
 import { Col, Image, Row } from "antd";
 import * as faceapi from "face-api.js";
 import React, { useState } from "react";
-import withFaciApiProvider from "./providers/face-api";
+import withFaciApiProvider, { useFaceApiProvider } from "./providers/face-api";
 
 const displaySize = {
   width: 300,
@@ -84,7 +84,13 @@ function App() {
 }
 
 const VideoPlayer = () => {
-  return null;
+  const { canvasRef, videoRef } = useFaceApiProvider();
+  return (
+    <React.Fragment>
+      <video ref={videoRef} {...displaySize} playsInline />
+      <canvas ref={canvasRef} {...displaySize}  />
+    </React.Fragment>
+  );
 };
 
 const CapturePreview = () => {
